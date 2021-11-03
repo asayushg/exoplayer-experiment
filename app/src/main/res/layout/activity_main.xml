@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/mainLayout"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/mainPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:controller_layout_id="@layout/exo_player_custom_controller"
+        app:hide_on_touch="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="@id/mainPlayer"
+        app:layout_constraintEnd_toEndOf="@id/mainPlayer"
+        app:layout_constraintStart_toStartOf="@id/mainPlayer"
+        app:layout_constraintTop_toTopOf="@id/mainPlayer" />
+
+    <ImageView
+        android:id="@+id/custom_thumbnail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@+id/mainPlayer"
+        app:layout_constraintStart_toStartOf="@id/mainPlayer"
+        app:layout_constraintTop_toTopOf="@id/mainPlayer"
+        app:layout_constraintBottom_toBottomOf="@id/mainPlayer"/>
+
+    <ImageView
+        android:id="@+id/play_video_thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_play_video"
+        app:layout_constraintEnd_toEndOf="@+id/mainPlayer"
+        app:layout_constraintStart_toStartOf="@id/mainPlayer"
+        app:layout_constraintTop_toTopOf="@id/mainPlayer"
+        app:layout_constraintBottom_toBottomOf="@id/mainPlayer"/>
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Video\nSpeed"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainPlayer" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Video\nQuality"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button8"
+        app:layout_constraintStart_toEndOf="@id/button6"
+        app:layout_constraintTop_toBottomOf="@+id/mainPlayer" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Full\nScreen"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/mainPlayer" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
