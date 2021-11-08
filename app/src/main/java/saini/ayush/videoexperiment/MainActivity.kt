@@ -1,6 +1,7 @@
 package saini.ayush.videoexperiment
 
 import android.annotation.SuppressLint
+import android.app.ActionBar
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -8,8 +9,10 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -67,6 +70,7 @@ class MainActivity : AppCompatActivity(), SpeedDialog.SetSpeedClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(binding.root)
         setType()
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -104,6 +108,7 @@ class MainActivity : AppCompatActivity(), SpeedDialog.SetSpeedClickListener {
         } else {
             hideSystemUI()
         }
+
     }
 
     private fun hideSystemUI() {
@@ -188,26 +193,26 @@ class MainActivity : AppCompatActivity(), SpeedDialog.SetSpeedClickListener {
             .setTrackSelector(trackSelector)
             .build()
             .also { exoPlayer ->
+                (binding.mainPlayer.videoSurfaceView as SurfaceView).setSecure(true)
+                val customerPlayerData = CustomerPlayerData()
+                customerPlayerData.environmentKey = getString(R.string.mux_env)
+                val customerVideoData = CustomerVideoData()
+                customerVideoData.videoTitle = "Sample"
+                val customerViewData = CustomerViewData()
+                customerVideoData.videoId = "12345"
+                customerVideoData.videoStreamType = "m3u8"
 
-//                val customerPlayerData = CustomerPlayerData()
-//                customerPlayerData.environmentKey = getString(R.string.mux_env)
-//                val customerVideoData = CustomerVideoData()
-//                customerVideoData.videoTitle = "Sample"
-//                val customerViewData = CustomerViewData()
-//                customerVideoData.videoId = "12345"
-//                customerVideoData.videoStreamType = "m3u8"
-//
-//                muxStatsExoPlayer = MuxStatsExoPlayer(
-//                    this,
-//                    exoPlayer,
-//                    "demo",
-//                    CustomerData(
-//                        customerPlayerData,
-//                        customerVideoData,
-//                        customerViewData
-//                    )
-//                )
-//                muxStatsExoPlayer?.setPlayerView(binding.mainPlayer)
+                muxStatsExoPlayer = MuxStatsExoPlayer(
+                    this,
+                    exoPlayer,
+                    "demo",
+                    CustomerData(
+                        customerPlayerData,
+                        customerVideoData,
+                        customerViewData
+                    )
+                )
+                muxStatsExoPlayer?.setPlayerView(binding.mainPlayer)
 
                 binding.mainPlayer.player = exoPlayer
                 exoPlayer.addListener(playbackStateListener)
